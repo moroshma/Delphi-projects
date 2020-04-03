@@ -1,0 +1,70 @@
+unit Lab7;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls;
+
+type
+  TForm1 = class(TForm)
+    Edit1: TEdit;
+    Label1: TLabel;
+    Button1: TButton;
+    Edit2: TEdit;
+    Label2: TLabel;
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.Button1Click(Sender: TObject);
+var
+  i, j: integer;
+  ss, rs: string;
+  t: char;
+  A: set of char;
+
+
+begin
+  ss := Edit1.Text;
+  A := ['j'..'s','J'..'S'];
+
+
+  for i := 1 to length(ss) do
+      if ss[i] in A then
+        rs := rs + ss[i];
+
+  rs := AnsiUpperCase(rs);
+
+
+  for j := 1 to length(rs) - 1 do
+    for i := 1 to length(rs) - 1  do
+       if rs[i] > rs[i + 1] then
+          begin
+            t := rs[i + 1];
+            rs[i + 1] := rs[i];
+            rs[i] := t;
+          end;
+
+
+
+
+
+
+  Edit2.Text := rs;
+
+
+end;
+
+
+end.
